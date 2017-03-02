@@ -65,9 +65,15 @@ var dvdAnime = function() {
     var xcor = randInt(0, width-80);
     var ycor = randInt(0, height-50);
     var dX = 1;
-    var xY = 1;
+    var dY = 1;
 
     var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    s.appendChild(rect);
+    rect.setAttribute("x", xcor);
+    rect.setAttribute("y", ycor);
+    rect.setAttribute("width", 80);
+    rect.setAttribute("height", 50);
+    rect.setAttribute("fill", "red");
     
     var movedvd = function() {
 	console.log(rid);
@@ -79,7 +85,13 @@ var dvdAnime = function() {
 	}
 	xcor += dX;
 	ycor += dY;
-	
+	rect.setAttribute("x", xcor);
+	rect.setAttribute("y", ycor);
+	rid = window.requestAnimationFrame(movedvd);
+    };
+    movedvd();
+};	
 
 circleButton.addEventListener("click", circleAnime);
+dvdButton.addEventListener("click", dvdAnime);
 stopButton.addEventListener("click", stopIt);
